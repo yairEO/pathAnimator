@@ -5,7 +5,7 @@ Moves along an SVG path.
 ###[Demonstration page here](http://dropthebit.com/demos/pathAnimator/index.html)
 
 ## Basic use example:
-```
+```javascript
 var path = "M150 0 L75 200 L225 200 Z";	// an SVG path
 	pathAnimator = new PathAnimator( path ),	// initiate a new pathNimator object
 	speed = 6,	 		// seconds that will take going through the whole path
