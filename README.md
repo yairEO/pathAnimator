@@ -7,7 +7,7 @@ Moves along an SVG path.
 ## Basic use example:
 ```javascript
 var path = "M150 0 L75 200 L225 200 Z";	// an SVG path
-	pathAnimator = new PathAnimator( path ),	// initiate a new pathNimator object
+	pathAnimator = new PathAnimator( path ),	// initiate a new pathAnimator object
 	speed = 6,	 		// seconds that will take going through the whole path
 	reverse = false,	// go back of forward along the path
 	startOffset = 0		// between 0% to 100%
