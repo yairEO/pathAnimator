@@ -5,9 +5,8 @@
 	MIT-style license.
 ----------*/
 function PathAnimator(path){
-    this.path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    this.path.setAttribute('d', path);
-    this.updatePath();
+    if( path ) 
+		this.updatePath(path);
 	this.timer = null;
 }
 
@@ -65,7 +64,9 @@ PathAnimator.prototype = {
 		return this.path.getPointAtLength( this.len * percent/100 );
 	},
 
-	updatePath : function(){
+	updatePath : function(path){
+		this.path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+		this.path.setAttribute('d', path);
 		this.len = this.path.getTotalLength();
 	}
 };
