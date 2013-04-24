@@ -44,8 +44,8 @@ PathAnimator.prototype = {
 			}
 
 			/*==== angle calculations ====*/
-			p[0] = that.pointAt( percent - 1 ),
-			p[1] = that.pointAt( percent + 1 ),
+			p[0] = that.pointAt( percent - 1 );
+			p[1] = that.pointAt( percent + 1 );
 			angle = Math.atan2(p[1].y-p[0].y,p[1].x-p[0].x)*180 / Math.PI;
 
 			// do one step ("frame") 
