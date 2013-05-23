@@ -7,9 +7,10 @@ html{ height:100%; }
 body{ color:#666; font:12px/1.5 arial; text-align:center; min-height:100%; }
 
 menu{ position:absolute; top:60px; left:0; padding:10px; margin:0; text-align:left; }
-	menu > div{ background:#EEE; padding:6px; margin:8px 0; width:170px; border-left:8px solid deeppink; }
+	menu > div{ background:#EEE; padding:6px; margin:8px 0; width:190px; border-left:8px solid deeppink; }
 	menu button{ cursor:pointer; margin:0 0 5px 0; font-size:inherit; }
 	menu input[type=checkbox]{ display:none; }
+	menu input[type=range]{ width:120px; }
 		.stopPlay::after{ content:'Stop'; }
 		input:checked + .stopPlay::after{ content:'Play'; color:red; }
 		.reverse::after{ content:'Go Reverse'; }
@@ -17,7 +18,7 @@ menu{ position:absolute; top:60px; left:0; padding:10px; margin:0; text-align:le
 	menu > div:first-of-type .delete{ display:none; }
 	menu .delete{ background:#FFF; border:1px solid #CCC; border-radius:30px; color:#666; float:right; font-size:20px; height:20px; line-height:8px; padding:0 0 1px; width:20px; }
 	menu .delete:hover{ background:#666; color:#fff; border-color:transparent; }
-	menu input{ padding:4px; margin-right:6px; width:70px; }
+	menu input{ padding:4px; margin-right:6px; width:70px; vertical-align:middle; }
 	
 	header{ background:#333; width:100%; height:40px; line-height:36px; position:fixed; top:0; left:0; font-size:14px; }
 		a.git, a.by{ position:absolute; top:2px; right:5px; opacity:0.3; -webkit-transition:0.3s cubic-bezier(0.055, 0.6, 0.2, 1); transition:0.3s cubic-bezier(0.055, 0.6, 0.2, 1); }
