@@ -9,7 +9,7 @@ Moves a DOM element along an SVG path (or do whatever along a path...)
 var path = "M150 0 L75 200 L225 200 Z";	// an SVG path
 	pathAnimator = new PathAnimator( path ),	// initiate a new pathAnimator object
 	speed = 6,	 		// seconds that will take going through the whole path
-	reverse = false,	// go back of forward along the path
+	reverse = false,	// go back or forward along the path
 	startOffset = 0		// between 0% to 100%
 	
 pathAnimator.start( speed, step, reverse, startOffset, finish);
