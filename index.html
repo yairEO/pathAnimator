@@ -18,8 +18,10 @@
 	</header>
 
 	<menu>
-		<button id='showPath'>Toggle Path</button>
-		<div id='walkerController_1'>
+		<label><input type='checkbox' id='showPath'>Show SVG Path</label>
+		<br><br>
+		<button id='addWalker'>Add Another</button>
+		<div class='walkerController'>
 			<button class='delete' title='Remove This Walker Instance'>&times;</button>
 			<label>
 				<input type='checkbox'>
@@ -29,11 +31,18 @@
 				<input type='checkbox'>
 				<button class='reverse'></button>
 			</label>
+			<select>
+				<option value=''>No Easing</option>
+				<option value='t*t'>easeInQuad</option>
+				<option value='t*(2-t)'>easeOutQuad</option>
+				<option value='t<.5 ? 2*t*t : -1+(4-2*t)*t'>easeInOutQuad</option>
+				<option value='t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t'>easeInOutQuart</option>
+			</select>
 			<br>
-			<input class='speed' type="range" min="1" max="100" step="1" value="60"><span>Time (s)</span>
+			<input class='speed' type="range" min="1" max="100" step="1" value="30">
+			<span>Time (s)</span>
 			<!--<input class='speed' type='number'>-->
 		</div>
-		<button id='addWalker'>Add 1 More</button>
 	</menu>
 
 	<div class='maze'>
