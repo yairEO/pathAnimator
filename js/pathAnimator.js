@@ -1,9 +1,9 @@
-/*---------
+/*-----------------------------
 	Path Animator v1.1.0
 	(c) 2013 Yair Even Or <http://dropthebit.com>
 	
 	MIT-style license.
-----------*/
+------------------------------*/
 function PathAnimator(path){
     if( path ) this.updatePath(path);
 	this.timer = null;

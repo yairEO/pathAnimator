@@ -33,10 +33,14 @@
 			</label>
 			<select>
 				<option value=''>No Easing</option>
+				<option value='Math.pow(t,3)'>easeInCubic</option>
+				<option value='1-Math.pow(1-t,3)'>easeOutCubic</option>
+				<option value='Math.pow(2,-10*t) * Math.sin((t-2/4)*(2*Math.PI)/2) + 1'>easeOutElastic</option>
 				<option value='t*t'>easeInQuad</option>
 				<option value='t*(2-t)'>easeOutQuad</option>
 				<option value='t<.5 ? 2*t*t : -1+(4-2*t)*t'>easeInOutQuad</option>
 				<option value='t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t'>easeInOutQuart</option>
+				
 			</select>
 			<br>
 			<input class='speed' type="range" min="1" max="100" step="1" value="30">
