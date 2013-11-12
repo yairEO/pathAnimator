@@ -27,11 +27,11 @@
 
 		// Execute every "frame"
 		step : function(point, angle){
-			this.walker.style.cssText = ["top:", point.y, "px;",
-										"left:", point.x, "px;",
-										"transform:rotate(", angle ,"deg);",
-										"-webkit-transform:rotate(", angle , "deg);", 
-										"color:", this.color].join('');
+			this.walker.style.cssText = "top:" + point.y + "px;" + 
+										"left:" + point.x + "px;" + 
+										"transform:rotate(" + angle + "deg);" +
+										"-webkit-transform:rotate(" +  angle + "deg);" +
+										"color:" + this.color;
 		},
 
 		// Restart animation once it was finished
