@@ -51,10 +51,10 @@ PathAnimator.prototype = {
 			p[1] = that.pointAt( percent + 1 );
 			angle = Math.atan2(p[1].y-p[0].y,p[1].x-p[0].x)*180 / Math.PI;
 
-			// do one step ("frame") 
-			step.call( that.context, that.pointAt(percent), angle );
 			// advance to the next point on the path 
 			that.timer = setTimeout( calc, delay );
+			// do one step ("frame") 
+			step.call( that.context, that.pointAt(percent), angle );
 		})();
 	},
 	
