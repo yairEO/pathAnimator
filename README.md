@@ -2,7 +2,7 @@ Path Animator
 =============
 Moves a DOM element along an SVG path (or do whatever along a path...)
 
-###[DEMO PAGE](http://dropthebit.com/demos/pathAnimator/index.html)
+###[DEMO PAGE](http://yaireo.github.io/pathAnimator/)
 
 ## Basic use example:
 ```javascript
