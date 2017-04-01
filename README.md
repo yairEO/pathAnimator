@@ -2,7 +2,7 @@ Path Animator
 =============
 Moves a DOM element along an SVG path (or do whatever along a path...)
 
-###[DEMO PAGE](http://yaireo.github.io/pathAnimator/)
+# [DEMO PAGE](http://yaireo.github.io/pathAnimator/)
 
 ## Basic use example:
 ```javascript
@@ -12,8 +12,8 @@ var path = "M150 0 L75 200 L225 200 Z"; // an SVG path
     reverse = false,        // go back or forward along the path
     startOffset = 0,        // between 0% to 100%
     easing = function(t){ t*(2-t) };    // optional easing function
-    
-    
+
+
 pathAnimator.start( speed, step, reverse, startOffset, finish, easing);
 
 function step( point, angle ){
