@@ -4,73 +4,83 @@
 
     MIT-style license.
 ------------------------------*/
-function PathAnimator(path){
-    if( path ) this.updatePath(path);
-    this.timer = null;
+function PathAnimator(path) {
+  if (path) this.updatePath(path);
+  this.timer = null;
 }
 
 PathAnimator.prototype = {
-    start : function( duration, step, reverse, startPercent, callback, easing ){
-        this.stop();
-        this.percent = startPercent || 0;
+  start(duration, step, reverse, startPercent, callback, easing, stopAt) {
+    this.stop();
+    this.percent = startPercent || 0;
 
-        if( duration == 0 ) return false;
+    if (duration === 0) return false;
 
-        var that = this,
-            startTime = new Date(),
-            delay = 1000/60;
+    const that = this;
+    const startTime = new Date();
+    const delay = 1000 / 60;
+    const stopPercent = stopAt || (reverse ? 0 : 100);
 
-        (function calc(){
-            var p = [], angle,
-                now = new Date(),
-                elapsed = (now-startTime)/1000,
-                t = (elapsed/duration),
-                percent = t * 100;
+    (function calc() {
+      const p = [];
+      const now = new Date();
+      const elapsed = (now - startTime) / 1000;
+      let t = (elapsed / duration);
 
-            // easing functions: https://gist.github.com/gre/1650294
-            if( typeof easing == 'function' )
-                percent = easing(t) * 100;
+      // easing functions: https://gist.github.com/gre/1650294
+      if (typeof easing === 'function') {
+        t = easing(t);
+      }
 
-            if( reverse )
-                percent = startPercent - percent;
-            else
-                percent += startPercent;
+      let percent = t * (stopPercent - startPercent);
+      if (reverse) {
+        percent *= -1;
+      }
 
-            that.running = true;
+      that.running = true;
 
-            // On animation end (from '0%' to '100%' or '100%' to '0%')
-            if( percent > 100 || percent < 0 ){
-                that.stop();
-                return callback.call( that.context );
-            }
+      // On animation end (from '0%' to '100%' or '100%' to '0%')
+      if (t > 1) {
+        that.stop();
+        return callback.call(that.context);
+      }
 
-            that.percent = percent; // save the current completed percentage value
+      that.percent = percent + startPercent; // save the current completed percentage value
 
-            //  angle calculations
-            p[0] = that.pointAt( percent - 1 );
-            p[1] = that.pointAt( percent + 1 );
-            angle = Math.atan2(p[1].y-p[0].y,p[1].x-p[0].x)*180 / Math.PI;
+      if (reverse) {
+        that.percent = startPercent - percent;
+      }
 
-            // advance to the next point on the path
-            that.timer = setTimeout( calc, delay );
-            // do one step ("frame")
-            step.call( that.context, that.pointAt(percent), angle );
-        })();
-    },
+      //  angle calculations
+      p[0] = that.pointAt(that.percent - 1);
+      p[1] = that.pointAt(that.percent + 1);
+      const angle = (Math.atan2(p[1].y - p[0].y, p[1].x - p[0].x) * 180) / Math.PI;
 
-    stop : function(){
-        clearTimeout( this.timer );
-        this.timer = null;
-        this.running = false;
-    },
+      // advance to the next point on the path
+      that.timer = setTimeout(calc, delay);
+      // do one step ("frame")
+      step.call(that.context, that.pointAt(that.percent), angle);
+      return null;
+    }());
 
-    pointAt : function(percent){
-        return this.path.getPointAtLength( this.len * percent/100 );
-    },
+    return this;
+  },
 
-    updatePath : function(path){
-        this.path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        this.path.setAttribute('d', path);
-        this.len = this.path.getTotalLength();
-    }
+  stop() {
+    clearTimeout(this.timer);
+    this.timer = null;
+    this.running = false;
+  },
+
+  pointAt(percent) {
+    return this.path.getPointAtLength((this.len * percent) / 100);
+  },
+
+  updatePath(path) {
+    this.path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    this.path.setAttribute('d', path);
+    this.len = this.path.getTotalLength();
+  },
 };
+
+export default PathAnimator;
