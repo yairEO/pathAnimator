@@ -20,9 +20,10 @@ function PathAnimator( path, settings ){
 }
 
 PathAnimator.prototype = {
-    start : function(){
+    start : function( startFromPercent ){
         this.stop();
-        this.percent = this.settings.startPercent || 0;
+        startFromPercent = startFromPercent || this.settings.startPercent || 0;
+        this.percent = startFromPercent;
         if( this.settings.duration == 0 ) return false;
 
         var that = this,
@@ -37,11 +38,14 @@ PathAnimator.prototype = {
                 percent = t * 100;
 
             // easing functions: https://gist.github.com/gre/1650294
-            if( typeof that.settings.easing == 'function' )
+            if( typeof that.settings.easing == 'function' ){
                 percent = that.settings.easing(t) * 100;
+            }
 
-            if( that.reverse )  percent = that.settings.startPercent - percent;
-            else                percent += that.settings.startPercent;
+            if( that.settings.reverse )
+                percent = startFromPercent - percent;
+            else
+                percent += startFromPercent;
 
             that.running = true;
 

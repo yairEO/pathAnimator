@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+	<meta charset="utf-8">
+	<title>PathAnimator - demo 2</title>
+	<meta name="description" content="">
+	<meta name="author" content="Yair Even Or">
+	<meta name="viewport" content="width=device-width">
+	<link rel="shortcut icon" href="xxx" />
+	<style>
+		img{
+			position: absolute;
+			width: 40px;
+		}
+	</style>
+</head>
+<body>
+	<img src="fire.png">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src='../../pathAnimator.js'></script>
+	<script>
+		/*----------------------------------------------------------
+			Page Configuration
+		-----------------------------------------------------------*/
+		(function(){
+			var path = "M93.9,46.4c9.3,9.5,13.8,17.9,23.5,17.9s17.5-7.8,17.5-17.5s-7.8-17.6-17.5-17.5c-9.7,0.1-13.3,7.2-22.1,17.1c-8.9,8.8-15.7,17.9-25.4,17.9s-17.5-7.8-17.5-17.5s7.8-17.5,17.5-17.5S86.2,38.6,93.9,46.4z",
+				firstWalkerObj = $('img')[0],
+				walkers = [];
+
+			// handles whatever moves along the path
+			function AnimateWalker(walker){
+				this.pathAnimator = new PathAnimator( path, {
+					duration : 3,
+					step     : this.step.bind(this),
+					reverse  : false,
+					onDone   : this.finish.bind(this)
+				});
+
+				this.walker = walker;
+			}
+
+			AnimateWalker.prototype = {
+				start : function(){
+					this.startOffset = (this.reverse || this.speed < 0) ? 100 : 0; // if in reversed mode, then animation should start from the end, I.E 100%
+					this.pathAnimator.start();
+				},
+
+				// Execute every "frame"
+				step : function(point, angle){
+					var stretchFactor = 5,
+						scale = this.pathAnimator.percent < 50 ? this.pathAnimator.percent : 50 - (this.pathAnimator.percent - 50);
+
+					scale = (scale/30) + 0.5;
+
+					this.walker.style.cssText = "top:" + point.y * stretchFactor + "px;" +
+												"left:" + point.x * stretchFactor + "px;" +
+												"transform:rotate(" + angle + "deg) scale("+ scale +");";
+				},
+
+				// Restart animation once it was finished
+				finish : function(){
+					this.start();
+				},
+
+				// Resume animation from the last completed percentage (also updates the animation with new settings' values)
+				resume : function(){
+					this.pathAnimator.start( this.speed, this.step, this.reverse, this.pathAnimator.percent, this.finish, this.easing);
+				}
+			}
+
+			function generateWalker(walkerObj){
+				var newAnimatedWalker = new AnimateWalker( walkerObj );
+				walkers.push(newAnimatedWalker);
+				return newAnimatedWalker;
+			}
+
+			// start "animating" the first Walker on the page
+			generateWalker(firstWalkerObj).start();
+			// bind the first Controller to the first Walker
+			var firstController = $('menu > div:first');
+			firstController.data( 'walker', walkers[0] );
+		})();
+	</script>
+</body>
+</html>

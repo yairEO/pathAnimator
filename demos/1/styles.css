@@ -13,20 +13,24 @@ menu{ position:absolute; top:45px; left:0; padding:10px; margin:0; text-align:le
 	.walkerController{ background:#EEE; padding:6px; margin:8px 0; width:282px; border-left:8px solid deeppink; }
 	.walkerController input[type=checkbox]{ display:none; }{   }
 	menu button{ cursor:pointer; margin:0 0 5px 0; font-size:inherit; }
-	
+
+	.walkerController label > span{ background:#E1E1E1; border:1px solid #AAA; padding:1px 6px; border-radius:2px; }
+	.walkerController label > span:hover{ background:#EEE; }
 	.walkerController input[type=range]{ width:230px; }
 		.walkerController input[type=range] + span{ float:right; line-height:2; }
-		.stopPlay::after{ content:'Stop'; }
-		.walkerController input:checked + .stopPlay::after{ content:'Play'; color:red; }
-		.reverse::after{ content:'Go Reverse'; }
-		.walkerController input:checked + .reverse::after{ content:'Go Forward'; }
+		.stopPlay span::after{ content:'Playing'; }
+		.walkerController .stopPlay input:checked + span::after{ content:'Stopped'; color:red; }
+
+		.reverse span::after{ content:'Going Forward'; }
+		.walkerController .reverse input:checked + span::after{ content:'Going Reverse'; }
+
 	menu > div:first-of-type .delete{ display:none; }
 	menu select option:first-child{ border-bottom:1px solid #CCC; font-weight:bold; }
 	menu .delete{ background:#FFF; border:1px solid #CCC; border-radius:30px; color:#666; float:right; font-size:20px; height:20px; line-height:8px; padding:0 0 1px; width:20px; }
 	menu .delete:hover{ background:#666; color:#fff; border-color:transparent; }
 	.walkerController input{ padding:4px; margin-right:6px; width:70px; vertical-align:middle; }
 	menu #addWalker{ padding:5px 20px; }
-	
+
 	header{ background:#333; width:100%; height:40px; line-height:36px; position:fixed; top:0; left:0; font-size:14px; }
 		a.git, a.by{ position:absolute; top:2px; right:5px; opacity:0.3; -webkit-transition:0.3s cubic-bezier(0.055, 0.6, 0.2, 1); transition:0.3s cubic-bezier(0.055, 0.6, 0.2, 1); }
 		a.git{ -webkit-transform:scale(0.6); transform:scale(0.6); -webkit-transform-origin:100% 0 0; transform-origin:100% 0 0; }
@@ -45,6 +49,6 @@ menu{ position:absolute; top:45px; left:0; padding:10px; margin:0; text-align:le
 .maze{ display:inline-block; vertical-align:middle; height:537px; width:536px; margin:100px auto; background:url('maze.png') 0 0 no-repeat; position:relative; }
 	/* Walker */
 	.walker{ position:absolute; z-index:1; font-size:25px; color:deeppink; height:25px; width:25px; text-align:center; line-height:25px; margin:-93px 0 0 28px; text-shadow:-6px 0px 2px rgba(0,0,0,0.3), 7px 0; }
-	
+
 #svgPath{ opacity:0; margin:-80px 0 0 39px; -webkit-transition:0.2s; transition:0.2s; }
 #svgPath.show{ opacity:1; }
