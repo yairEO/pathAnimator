@@ -10,7 +10,7 @@ label{ cursor:pointer; }
 input[type=checkbox]{ margin:-1px 5px 0 0; vertical-align:text-top; }
 
 menu{ position:absolute; top:45px; left:0; padding:10px; margin:0; text-align:left; }
-	.walkerController{ background:#EEE; padding:6px; margin:8px 0; width:300px; border-left:8px solid deeppink; }
+	.walkerController{ background:#EEE; padding:6px; margin:8px 0; width:282px; border-left:8px solid deeppink; }
 	.walkerController input[type=checkbox]{ display:none; }{   }
 	menu button{ cursor:pointer; margin:0 0 5px 0; font-size:inherit; }
 
